@@ -255,6 +255,9 @@ func TestAtForString(t *testing.T) {
 		"@13:00 for 1d30m":   []int{13, 80, 1470},
 		"":                   []int{80, 0, 0},
 		"@00:00 for 30m":     []int{80, 0, 30},
+		"for 1d":             []int{0, 0, 1440},
+		"@00:00 for 1d1h":    []int{0, 0, 1500},
+		"for 2d":             []int{0, 0, 2880},
 	} {
 		out := AtForString(in[0], in[1], in[2])
 		if out != exp {

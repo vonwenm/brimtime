@@ -349,9 +349,8 @@ func AtForString(hour int, minute int, duration int) string {
 		minute = 0
 	}
 	atString += fmt.Sprintf(":%02d", minute)
-	forString := ""
 	if duration > 0 {
-		forString += " for "
+		var forString string
 		days := duration / 1440
 		hours := duration / 60 % 24
 		minutes := duration % 60
@@ -364,6 +363,12 @@ func AtForString(hour int, minute int, duration int) string {
 		if minutes > 0 {
 			forString += fmt.Sprintf("%dm", minutes)
 		}
+		if days > 0 && hours == 0 && minutes == 0 && hour == 0 && minute == 0 {
+			return "for " + forString
+		} else {
+			return atString + " for " + forString
+		}
+	} else {
+		return atString
 	}
-	return atString + forString
 }
