@@ -263,14 +263,17 @@ func TranslateDateRef(value string, biases []string, reference time.Time) time.T
 // time.IsZero() will be returned.
 func TranslateRelativeDate(value string, reference time.Time) time.Time {
 	value = strings.ToLower(strings.Trim(value, " \r\n"))
+	if strings.HasPrefix(value, "in ") {
+		value = strings.Trim(value[3:], " \r\n")
+	}
 	years, months, days := 0, 0, 0
-	if value == "tomorrow" || value == "tomorow" || value == "tommorow" || value == "tommorrow" || value == "next day" || value == "a day from now" {
+	if value == "tomorrow" || value == "tomorow" || value == "tommorow" || value == "tommorrow" || value == "next day" || value == "a day" || value == "a day from now" {
 		days = 1
-	} else if value == "next week" || value == "a week from now" {
+	} else if value == "next week" || value == "a week" || value == "a week from now" {
 		days = 7
-	} else if value == "next month" || value == "a month from now" {
+	} else if value == "next month" || value == "a month" || value == "a month from now" {
 		months = 1
-	} else if value == "next year" || value == "a year from now" {
+	} else if value == "next year" || value == "a year" || value == "a year from now" {
 		years = 1
 	} else if value == "yesterday" || value == "last day" || value == "previous day" || value == "a day ago" {
 		days = -1
@@ -280,23 +283,23 @@ func TranslateRelativeDate(value string, reference time.Time) time.Time {
 		months = -1
 	} else if value == "last year" || value == "previous year" || value == "a year ago" {
 		years = -1
-	} else if strings.HasSuffix(value, " day from now") || strings.HasSuffix(value, " days from now") || strings.HasSuffix(value, " day") || strings.HasSuffix(value, " days") {
+	} else if strings.HasSuffix(value, " day from now") || strings.HasSuffix(value, " days from now") || strings.HasSuffix(value, " day") || strings.HasSuffix(value, " days") || strings.HasSuffix(value, "d") {
 		n, err := fmt.Sscanf(strings.SplitN(value, " ", 1)[0], "%d", &days)
 		if err != nil || n != 1 {
 			return time.Time{}
 		}
-	} else if strings.HasSuffix(value, " week from now") || strings.HasSuffix(value, " weeks from now") || strings.HasSuffix(value, " week") || strings.HasSuffix(value, " weeks") {
+	} else if strings.HasSuffix(value, " week from now") || strings.HasSuffix(value, " weeks from now") || strings.HasSuffix(value, " week") || strings.HasSuffix(value, " weeks") || strings.HasSuffix(value, "w") {
 		n, err := fmt.Sscanf(strings.SplitN(value, " ", 1)[0], "%d", &days)
 		if err != nil || n != 1 {
 			return time.Time{}
 		}
 		days *= 7
-	} else if strings.HasSuffix(value, " month from now") || strings.HasSuffix(value, " months from now") || strings.HasSuffix(value, " month") || strings.HasSuffix(value, " months") {
+	} else if strings.HasSuffix(value, " month from now") || strings.HasSuffix(value, " months from now") || strings.HasSuffix(value, " month") || strings.HasSuffix(value, " months") || strings.HasSuffix(value, "m") {
 		n, err := fmt.Sscanf(strings.SplitN(value, " ", 1)[0], "%d", &months)
 		if err != nil || n != 1 {
 			return time.Time{}
 		}
-	} else if strings.HasSuffix(value, " year from now") || strings.HasSuffix(value, " years from now") || strings.HasSuffix(value, " year") || strings.HasSuffix(value, " years") {
+	} else if strings.HasSuffix(value, " year from now") || strings.HasSuffix(value, " years from now") || strings.HasSuffix(value, " year") || strings.HasSuffix(value, " years") || strings.HasSuffix(value, "y") {
 		n, err := fmt.Sscanf(strings.SplitN(value, " ", 1)[0], "%d", &years)
 		if err != nil || n != 1 {
 			return time.Time{}
