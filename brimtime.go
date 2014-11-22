@@ -375,3 +375,11 @@ func AtForString(hour int, minute int, duration int) string {
 		return atString
 	}
 }
+
+func TimeToUnixMicro(t time.Time) int64 {
+	return t.Unix()*1000000 + int64(t.Nanosecond())/1000
+}
+
+func UnixMicroToTime(t int64) time.Time {
+	return time.Unix(t/1000000, (t%1000000)*1000)
+}
