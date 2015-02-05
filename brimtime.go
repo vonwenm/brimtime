@@ -7,10 +7,11 @@ package brimtime
 
 import (
 	"fmt"
-	"github.com/gholt/brimtext"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/gholt/brimtext-v1"
 )
 
 var loweredMonths []string
