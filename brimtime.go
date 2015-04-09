@@ -4,14 +4,14 @@
 
 // Package brimtime contains tools for working with dates and times.
 //
-// This is the latest development area for the package.
+// This is the latest stable version of the package.
 //
-// For the latest stable version of the package, switch to the
-// v1 branch at https://github.com/gholt/brimtime/tree/v1
-// or use gopkg.in/gholt/brimtime.v1 as the import path.
+// For the latest development version of the package, switch to the
+// master branch at https://github.com/gholt/brimtime
+// or use github.com/gholt/brimtime as the import path.
 //
-// Also, you'd want to use http://godoc.org/gopkg.in/gholt/brimtime.v1
-// for the v1 documentation.
+// Also, you'd want to use http://godoc.org/github.com/gholt/brimtime
+// for the development documentation.
 package brimtime
 
 import (
