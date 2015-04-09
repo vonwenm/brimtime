@@ -1,8 +1,17 @@
-// Copyright 2014 Gregory Holt. All rights reserved.
+// Copyright Gregory Holt. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
 // Package brimtime contains tools for working with dates and times.
+//
+// This is the latest development area for the package.
+//
+// For the latest stable version of the package, switch to the
+// v1 branch at https://github.com/gholt/brimtime/tree/v1
+// or use gopkg.in/gholt/brimtime.v1 as the import path.
+//
+// Also, you'd want to use http://godoc.org/gopkg.in/gholt/brimtime.v1
+// for the v1 documentation.
 package brimtime
 
 import (
@@ -11,7 +20,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gholt/brimtext-v1"
+	"gopkg.in/gholt/brimtext.v1"
 )
 
 var loweredMonths []string
